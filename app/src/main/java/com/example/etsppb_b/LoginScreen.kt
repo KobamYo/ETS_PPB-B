@@ -1,4 +1,4 @@
-package com.example.simplelogin
+package com.example.etsppb_b
 
 import android.util.Log
 import androidx.compose.foundation.Image
