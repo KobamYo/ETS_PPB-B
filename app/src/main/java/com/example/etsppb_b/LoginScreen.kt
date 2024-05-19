@@ -29,23 +29,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LoginScreen() {
-
-    var email  by remember {
-        mutableStateOf("")
-    }
-
-    var password  by remember {
-        mutableStateOf("")
-    }
+fun LoginScreen(onLoginClick: (String, String) -> Unit) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(painter = painterResource(id = R.drawable.a), contentDescription = "Login Image",
-            modifier = Modifier.size(300.dp))
+        Image(
+            painter = painterResource(id = R.drawable.a),
+            contentDescription = "Login Image",
+            modifier = Modifier.size(300.dp)
+        )
 
         Text(text = "Welcome Back", fontSize = 28.sp, fontWeight = FontWeight.Bold)
 
@@ -55,24 +52,25 @@ fun LoginScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(value = email, onValueChange = {
-            email = it
-        }, label = {
-            Text(text = "Email address")
-        })
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "Email address") }
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(value = password, onValueChange = {
-            password = it
-        }, label = {
-            Text(text = "Password")
-        }, visualTransformation = PasswordVisualTransformation())
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text(text = "Password") },
+            visualTransformation = PasswordVisualTransformation()
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = {
-            Log.i("Credential", "Email : $email Password : $password")
+            onLoginClick(email, password)
         }) {
             Text(text = "Login")
         }
@@ -80,7 +78,7 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(text = "Forgot password?", modifier = Modifier.clickable {
-
+            // Handle forgot password
         })
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -91,29 +89,35 @@ fun LoginScreen() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Image(painter = painterResource(id = R.drawable.facebook),
+            Image(
+                painter = painterResource(id = R.drawable.facebook),
                 contentDescription = "Facebook",
                 modifier = Modifier
                     .size(60.dp)
                     .clickable {
                         // Facebook clicked
-                    })
+                    }
+            )
 
-            Image(painter = painterResource(id = R.drawable.google),
+            Image(
+                painter = painterResource(id = R.drawable.google),
                 contentDescription = "Google",
                 modifier = Modifier
                     .size(60.dp)
                     .clickable {
                         // Google clicked
-                    })
+                    }
+            )
 
-            Image(painter = painterResource(id = R.drawable.twitter),
+            Image(
+                painter = painterResource(id = R.drawable.twitter),
                 contentDescription = "Twitter/X",
                 modifier = Modifier
                     .size(60.dp)
                     .clickable {
                         // Twitter/X clicked
-                    })
+                    }
+            )
         }
     }
 }
